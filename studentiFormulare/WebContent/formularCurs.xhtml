@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<body>
+<div style="width:100%;font-size:36px;line-height:48px;background-color:navy;color:white">Formular cursuri</div>
+<h:form id="formC">
+<h:panelGrid id="p1" columns="2" border="1">
+<f:facet name="header">
+<h:outputText value="Formular simplu cursuri"></h:outputText>
+</f:facet>
+<h:panelGrid id="p5" columns="2" border="1">
+<h:selectOneMenu id="cboCurs" value="#{formCurs.idProf}">
+<f:selectItems value="#{formCurs.cursuri}" 
+var="item" itemValue="#{item.id}" itemLabel="#{item.denumire}"></f:selectItems>
+<f:ajax render="@form"></f:ajax>
+</h:selectOneMenu>
+</h:panelGrid>
+<h:panelGrid id="p2" columns="2">
+<h:commandButton id="cmdPrev" value="Previous" actionListener="#{formCurs.prevCurs}"></h:commandButton>
+<h:commandButton id="cmdNext" value="Next" actionListener="#{formCurs.nextCurs}"></h:commandButton>
+</h:panelGrid>
+
+<h:outputText value="Id curs"></h:outputText>
+<h:inputText id="id_curs" value="#{formCurs.curs.id}"></h:inputText>
+
+<h:outputText value="Denumire curs"></h:outputText>
+<h:inputText id="denumire_curs" value="#{formCurs.curs.denumire}"></h:inputText>
+
+<h:outputText value="Credite"></h:outputText>
+<h:inputText id="credite" value="#{formCurs.curs.credite}"></h:inputText>
+
+<h:panelGrid id="p3" columns="2">
+<h:commandButton id="cmdAdauga" value="Adauga" actionListener="#{formCurs.adaugaCurs}"></h:commandButton>
+<h:commandButton id="cmdSterge" value="Sterge" actionListener="#{formCurs.stergeCurs}"></h:commandButton>
+</h:panelGrid>
+
+<h:panelGrid id="p4" columns="2">
+<h:commandButton id="cmdAbandon" value="Abandon" actionListener="#{formCurs.abandon}"></h:commandButton>
+<h:commandButton id="cmdSalveaza" value="Salveaza" actionListener="#{formCurs.salveazaCurs}"></h:commandButton>
+</h:panelGrid>
+</h:panelGrid>
+
+<br></br>
+<br></br>
+
+<h:dataTable border="1" id="detProfesor" var="itemProf" value="#{formCurs.profDataModel}"> 
+<h:column id="col_id">
+<f:facet name="header">
+<h:outputText id="c_id_prof" value="ID"></h:outputText>
+</f:facet>
+<h:outputText id="id_prof" value="#{itemProf.id}"></h:outputText>
+</h:column>
+
+<h:column id="col_denumire">
+<f:facet name="header">
+<h:outputText id="c_nume_prof" value="Nume"></h:outputText>
+</f:facet>
+<h:inputText id="nume_prof" size="25" value="#{itemProf.nume}"></h:inputText>
+</h:column>
+
+<h:column id="col_data">
+<f:facet name="header">
+<h:outputText id="c_data_p" value="Data nasterii"></h:outputText>
+</f:facet>
+<h:inputText id="data_prof" value="#{itemProf.dataNasterii}">
+<f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Bucharest"/>
+</h:inputText>
+
+</h:column>
+
+<h:column id="col_stergere">
+<f:facet name="header">
+</f:facet>
+<h:commandButton id="sterge_prof" value="Sterge" actionListener="#{formCurs.stergeProfesor}"></h:commandButton>
+</h:column>
+
+<f:facet name="footer">
+<h:commandButton id="adauga_prof" value="Adauga profesor" actionListener="#{formCurs.adaugaProfesor}"></h:commandButton>
+</f:facet>
+
+
+</h:dataTable>
+
+</h:form>
+</body>
+</html>

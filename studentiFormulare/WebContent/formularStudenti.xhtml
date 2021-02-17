@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<body>
+<div style="width:100%;font-size:36px;line-height:48px;background-color:navy;color:white">Formular Studenti</div>
+<h:form id="formS">
+<h:panelGrid id="p1" columns="2" border="1">
+<f:facet name="header">
+<h:outputText value="Formular simplu studenti"></h:outputText>
+</f:facet>
+<h:panelGrid id="p5" columns="2" border="1">
+<h:selectOneMenu id="cboStud" value="#{formStudentiIF.matricolStudent}">
+<f:selectItems value="#{formStudentiIF.studenti}" 
+var="item" itemValue="#{item.numarMatricol}" itemLabel="#{item.nume}"></f:selectItems>
+<f:ajax render="@form"></f:ajax>
+</h:selectOneMenu>
+</h:panelGrid>
+<h:panelGrid id="p2" columns="2">
+<h:commandButton id="cmdPrev" value="Previous" actionListener="#{formStudentiIF.prevStudent}"></h:commandButton>
+<h:commandButton id="cmdNext" value="Next" actionListener="#{formStudentiIF.nextStudent}"></h:commandButton>
+</h:panelGrid>
+
+<h:outputText value="Nume Student"></h:outputText>
+<h:inputText id="nume_student" value="#{formStudentiIF.student.nume}"></h:inputText>
+
+<h:outputText value="Matricol Student"></h:outputText>
+<h:inputText id="matricol_student" value="#{formStudentiIF.student.numarMatricol}"></h:inputText>
+
+<h:outputText value="Profil"></h:outputText>
+<h:inputText id="profil" value="#{formStudentiIF.student.profil}"></h:inputText>
+
+<h:panelGrid id="p3" columns="2">
+<h:commandButton id="cmdAdauga" value="Adauga" actionListener="#{formStudentiIF.adaugaStudent}"></h:commandButton>
+<h:commandButton id="cmdSterge" value="Sterge" actionListener="#{formStudentiIF.stergeStudent}"></h:commandButton>
+</h:panelGrid>
+
+<h:panelGrid id="p4" columns="2">
+<h:commandButton id="cmdAbandon" value="Abandon" actionListener="#{formStudentiIF.abandon}"></h:commandButton>
+<h:commandButton id="cmdSalveaza" value="Salveaza" actionListener="#{formStudentiIF.salveazaStudent}"></h:commandButton>
+</h:panelGrid>
+</h:panelGrid>
+
+<br></br>
+<br></br>
+
+<h:dataTable border="1" id="detCursuri" var="itemCurs" value="#{formStudentiIF.cursuriDataModel}"> 
+<h:column id="col_id">
+<f:facet name="header">
+<h:outputText id="c_id_curs" value="ID"></h:outputText>
+</f:facet>
+<h:outputText id="id_curs" value="#{itemCurs.id}"></h:outputText>
+</h:column>
+
+<h:column id="col_denumire">
+<f:facet name="header">
+<h:outputText id="c_denumire_curs" value="Denumire"></h:outputText>
+</f:facet>
+<h:inputText id="denumire_curs" size="60" value="#{itemCurs.denumire}"></h:inputText>
+</h:column>
+
+<h:column id="col_credite">
+<f:facet name="header">
+<h:outputText id="c_credite_curs" value="Credite"></h:outputText>
+</f:facet>
+<h:inputText id="credite_curs" value="#{itemCurs.credite}"></h:inputText>
+</h:column>
+
+<h:column id="col_stergere">
+<f:facet name="header">
+</f:facet>
+<h:commandButton id="sterge_curs" value="Sterge" actionListener="#{formStudentiIF.stergeCurs}"></h:commandButton>
+</h:column>
+
+<f:facet name="footer">
+<h:commandButton id="adauga_curs" value="Adauga curs" actionListener="#{formStudentiIF.adaugaCurs}"></h:commandButton>
+</f:facet>
+
+
+</h:dataTable>
+
+</h:form>
+</body>
+</html>
